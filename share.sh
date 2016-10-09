@@ -3,7 +3,7 @@
 
 git clone $(git remote -v | grep push | cut -f2 | cut -d ' ' -f1) --branch gh-pages shares
 
-node build --production
+node build --development
 
 mkdir -p ./shares/$1
 cp -r ./builds/web/* ./shares/$1
