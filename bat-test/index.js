@@ -54,40 +54,59 @@
 
 	var _Render2 = _interopRequireDefault(_Render);
 
-	var _KeyboardInput = __webpack_require__(182);
+	var _KeyboardInput = __webpack_require__(186);
 
 	var _KeyboardInput2 = _interopRequireDefault(_KeyboardInput);
 
-	var _Game = __webpack_require__(185);
+	var _Game = __webpack_require__(189);
 
 	var _Game2 = _interopRequireDefault(_Game);
 
-	var _Frame = __webpack_require__(202);
+	var _Frame = __webpack_require__(204);
 
 	var _Frame2 = _interopRequireDefault(_Frame);
 
+	var _monsters = __webpack_require__(205);
+
+	var _monsters2 = _interopRequireDefault(_monsters);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var state = {
-	    frame: new _Frame2.default(),
-	    game: new _Game2.default({
-	        inputs: {
-	            // TODO: Save and load these inputs, so the
-	            // players can configure their inputs.
-	            north: new _KeyboardInput2.default(["<up>", "W"]),
-	            south: new _KeyboardInput2.default(["<down>", "S"]),
-	            west: new _KeyboardInput2.default(["<left>", "A"]),
-	            east: new _KeyboardInput2.default(["<right>", "D"]),
-	            wait: new _KeyboardInput2.default("<space>")
-	        }
-	    })
-	}; ////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////
 	//    _____         _   _     _   _ _                //
 	//   |   __|___ ___| |_|_|___|_|_| |_|___ ___       //
 	//   |   __|   |  _|   | |  _| | . | | . |   |     //
 	//   |_____|_|_|___|_|_|_|_| |_|___|_|___|_|_|    //
 	//                                               //
 	//////////////////////////////////////////////////
+
+	var state = {
+	    frame: new _Frame2.default(),
+	    game: new _Game2.default({
+	        adventurer: {
+	            inputs: {
+	                // TODO: Save and load these inputs, so the
+	                // players can configure their inputs.
+	                north: new _KeyboardInput2.default(["<up>", "W"]),
+	                south: new _KeyboardInput2.default(["<down>", "S"]),
+	                west: new _KeyboardInput2.default(["<left>", "A"]),
+	                east: new _KeyboardInput2.default(["<right>", "D"]),
+	                wait: new _KeyboardInput2.default("<space>")
+	            },
+	            position: {
+	                x: 3, y: 3
+	            }
+	        },
+	        wave: {
+	            capacity: 4,
+	            monsters: [_monsters2.default.RED_SLIME, _monsters2.default.BLUE_SLIME, _monsters2.default.RED_ORC, _monsters2.default.BLUE_ORC, _monsters2.default.GREEN_ORC, _monsters2.default.WHITE_TROLL, _monsters2.default.RED_BAT, _monsters2.default.BLUE_BAT, _monsters2.default.GREEN_BAT, _monsters2.default.FAST_BAT, _monsters2.default.STONE_BAT]
+	        },
+	        monsters: [{
+	            position: { x: 0, y: 0 },
+	            protomonster: _monsters2.default.RED_SLIME
+	        }]
+	    })
+	};
 
 	var render = new _Render2.default();
 	var loop = new _afloop2.default(function (delta) {
@@ -19877,7 +19896,7 @@
 
 	var _Entity2 = _interopRequireDefault(_Entity);
 
-	var _Camera = __webpack_require__(181);
+	var _Camera = __webpack_require__(185);
 
 	var _Camera2 = _interopRequireDefault(_Camera);
 
@@ -20147,18 +20166,27 @@
 	                ALPHA: __webpack_require__(168),
 	                OMEGA: __webpack_require__(169)
 	            },
-	            BAT: {
+	            ORC: {
 	                ALPHA: __webpack_require__(170),
 	                OMEGA: __webpack_require__(171)
+	            },
+	            TROLL: {
+	                ALPHA: __webpack_require__(172),
+	                OMEGA: __webpack_require__(173)
+	            },
+	            BAT: {
+	                ALPHA: __webpack_require__(174),
+	                OMEGA: __webpack_require__(175)
 	            }
 	        },
+
 	        EFFECTS: {
-	            SLICE: [__webpack_require__(172), __webpack_require__(173), __webpack_require__(174)],
-	            SLASH: [__webpack_require__(175), __webpack_require__(176), __webpack_require__(177)]
+	            SLICE: [__webpack_require__(176), __webpack_require__(177), __webpack_require__(178)],
+	            SLASH: [__webpack_require__(179), __webpack_require__(180), __webpack_require__(181)]
 	        },
 	        TERRAIN: {
-	            OCTOTHORPE: [__webpack_require__(178)],
-	            DOT: [__webpack_require__(179), __webpack_require__(180)]
+	            OCTOTHORPE: [__webpack_require__(182)],
+	            DOT: [__webpack_require__(183), __webpack_require__(184)]
 	        }
 	    }
 	};
@@ -20185,70 +20213,94 @@
 /* 170 */
 /***/ function(module, exports) {
 
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAAEZoTcHAAAAaElEQVQ4jd2SwQ6AMAhDKf//zasHdEFGUDwt9rRlr6NNgAikI23R/zKQ4xE15jQAWnvIAWicMD3FNXYI0JoWInhT4GZIf0pQ36ElS0V/4KX1Cem2zngWwyuPZNxKf+mQRyq073rvZDgA9lVE+6WQlU4AAAAASUVORK5CYII="
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAAEZoTcHAAAAmklEQVQ4jbVUQQ7AIAhrzf7/ZNnBhbGCMy6ZB4JYacEgAWJntS00gCOHzLr7pGbUfUTn7eNCPqs5R9EvaJGnkkY0WuEhQEnvuExLtoJh4Mx6bpFZbxHqOLfCedVQai3bQLZHDTFrFnkzRF5h86DHv750bkhZwOUANLNhZ45jGOdB+jht65S6evKF9PU8LJfOQ06p9fz+CWxfOAGbumkxghKWngAAAABJRU5ErkJggg=="
 
 /***/ },
 /* 171 */
 /***/ function(module, exports) {
 
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAAEZoTcHAAAAY0lEQVQ4je1Syw6AMAhr9//fbD0QCW44ZfHgwZ6WlD7IIEBU0ErTXxdI22TO2dUEM7gKiWyfELnUhQDn7TvQf/pWRrak0tMQSfGhAyPF9Pi8ntWIeOk0zHi0X0nIdyhX+gVn7BPmO/++ekroAAAAAElFTkSuQmCC"
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAAEZoTcHAAAAlklEQVQ4jbVUSQ4DMQizUf//5KEHKkQMUZpK5RCF3WaGECBuxK6iAby6yf3JO6kVVa/RXV0Sum90WTW5P4Ghnun6gIwpjbh7T9KsR0s3zQEolSInM7ekBcluuIZp2DshbYE0whCjQpJuaUz7r1/6GxoZEzQ8zt0lY1j3obLv6sxhaT39Iwfo5304iu5DL6l8/v4IXCe8AaLRbyXhma1MAAAAAElFTkSuQmCC"
 
 /***/ },
 /* 172 */
 /***/ function(module, exports) {
 
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAaElEQVQ4T83TUQrAIAwDUHP/Q1cmVHQWU2sH81d8pFFRkhaSnBKCREQ0AIBmuCHr8DgNhRjQk+068iLb0RTRDtilmKOdImaiCPIdFE2zJHogb7nv8qeyU6AbZBrtfxB7uWyffloG6H4F5MM4E4ve1rYAAAAASUVORK5CYIIA"
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAAEZoTcHAAAAgUlEQVQ4jd1TWw7AIAgDsvsf2e6DhSGvxL9lxBjEQq0oEzGdmByhf5oArM5R43ytEcFicfU5DwA2h0irIfMowzXjdGmnekQDSzcCuqwi/jZ8pSz6ZRi2vYA6IZ8qyBDzytoFm29cJ3pjKKMdmohiHwIic24lc5vU92nF45vtgz/uBjbkTiNwWTXCAAAAAElFTkSuQmCC"
 
 /***/ },
 /* 173 */
 /***/ function(module, exports) {
 
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAQElEQVQ4T2NkoBJgpJI5DKMGEQ7J0TAiI4z+////n5GRkeSwQ9FAriEg91LfIEpcg+KiwWcQ4QjGr4LkaMZlHACfoRgTgNn4NAAAAABJRU5ErkJgggAA"
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAAEZoTcHAAAAgklEQVQ4jdVTWw7AIAgDsvsf2e6DhSEPN/82YgxipRaUiZh2TLbQ/zgAjM5R41yliGCxuPqcBwCbQ6TVkHmU4VjjdGm3ukQDQzcCuswivho+UxZ9Myy2vYD6QL5VkCHmlbkLNt+4TvTEUEY7NBHFPgRE5nyoY+ac1m8aV7zWtX3wi57+gU4jAxN5rgAAAABJRU5ErkJggg=="
 
 /***/ },
 /* 174 */
 /***/ function(module, exports) {
 
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAM0lEQVQ4T2NkoBJgpJI5DKMGEQ7J0TAaDSPCIUBYBfXT0f////8zMjKSbTDZGtE9SzWDAHgCBBPbGH3jAAAAAElFTkSuQmCC"
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAAEZoTcHAAAAaElEQVQ4jd2SwQ6AMAhDKf//zasHdEFGUDwt9rRlr6NNgAikI23R/zKQ4xE15jQAWnvIAWicMD3FNXYI0JoWInhT4GZIf0pQ36ElS0V/4KX1Cem2zngWwyuPZNxKf+mQRyq073rvZDgA9lVE+6WQlU4AAAAASUVORK5CYII="
 
 /***/ },
 /* 175 */
 /***/ function(module, exports) {
 
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAaklEQVQ4T63UQRLAIAgDQPP/R9PhQMdaKWnEuzuRqBhNC03OuCEzMwAy/Nh4gr0SqNj2KAqWzsQxL4KdWwmx2GdLkYrByrpZrIQ8DYNR0Ixlw6eheErZ1fgNRbo1mQTtMBlasSNo/oLaoAtE1TgT0BJ5pAAAAABJRU5ErkJgggAA"
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAAEZoTcHAAAAY0lEQVQ4je1Syw6AMAhr9//fbD0QCW44ZfHgwZ6WlD7IIEBU0ErTXxdI22TO2dUEM7gKiWyfELnUhQDn7TvQf/pWRrak0tMQSfGhAyPF9Pi8ntWIeOk0zHi0X0nIdyhX+gVn7BPmO/++ekroAAAAAElFTkSuQmCC"
 
 /***/ },
 /* 176 */
 /***/ function(module, exports) {
 
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAATklEQVQ4T2NkoBJgpJI5DKMGEQ5JnGH0/////4yMjESHIV6FpBhG0EaQYSCPEXId/QyCBTMhbxJ0EXJ84TOMJIPwJYJRgyjIIoS1oqoAAOD4GBO8Slc2AAAAAElFTkSuQmCC"
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAaElEQVQ4T83TUQrAIAwDUHP/Q1cmVHQWU2sH81d8pFFRkhaSnBKCREQ0AIBmuCHr8DgNhRjQk+068iLb0RTRDtilmKOdImaiCPIdFE2zJHogb7nv8qeyU6AbZBrtfxB7uWyffloG6H4F5MM4E4ve1rYAAAAASUVORK5CYIIA"
 
 /***/ },
 /* 177 */
 /***/ function(module, exports) {
 
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAANklEQVQ4T2NkoBJgpJI5DKMGEQ7JIRhG/////w/yGCMjI17XE/Qa1QwiHMwQFQRdNGrQcA4jAM7RCBNgfEe3AAAAAElFTkSuQmCC"
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAQElEQVQ4T2NkoBJgpJI5DKMGEQ7J0TAiI4z+////n5GRkeSwQ9FAriEg91LfIEpcg+KiwWcQ4QjGr4LkaMZlHACfoRgTgNn4NAAAAABJRU5ErkJgggAA"
 
 /***/ },
 /* 178 */
 /***/ function(module, exports) {
 
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAASklEQVQ4T2NkoBJgpJI5DDgN+v///3+QJYyMjGA16Hx0B4wEg2BhQGrgw8IQHkZUMwjdJQMfa1TzGtUMGnxhNPhdRHIKJ1UDLvUA3m1gE0F4AtcAAAAASUVORK5CYIIA"
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAM0lEQVQ4T2NkoBJgpJI5DKMGEQ7J0TAaDSPCIUBYBfXT0f////8zMjKSbTDZGtE9SzWDAHgCBBPbGH3jAAAAAElFTkSuQmCC"
 
 /***/ },
 /* 179 */
 /***/ function(module, exports) {
 
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAANklEQVQ4T2NkoBJgpJI5DKMGEQ7JIRhG/////w/yGCMjI17XE/Qa1QwiHMwQFQRdNGrQcA4jAM7RCBNgfEe3AAAAAElFTkSuQmCC"
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAaklEQVQ4T63UQRLAIAgDQPP/R9PhQMdaKWnEuzuRqBhNC03OuCEzMwAy/Nh4gr0SqNj2KAqWzsQxL4KdWwmx2GdLkYrByrpZrIQ8DYNR0Ixlw6eheErZ1fgNRbo1mQTtMBlasSNo/oLaoAtE1TgT0BJ5pAAAAABJRU5ErkJgggAA"
 
 /***/ },
 /* 180 */
 /***/ function(module, exports) {
 
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAOUlEQVQ4T2NkoBJgpJI5DKMGEQ5J+oTR/////yO7hZGREafFeF00jA0iHFcIFfSJtVEXgUOAaoENAKdMEBOdLi4FAAAAAElFTkSuQmCC"
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAATklEQVQ4T2NkoBJgpJI5DKMGEQ5JnGH0/////4yMjESHIV6FpBhG0EaQYSCPEXId/QyCBTMhbxJ0EXJ84TOMJIPwJYJRgyjIIoS1oqoAAOD4GBO8Slc2AAAAAElFTkSuQmCC"
 
 /***/ },
 /* 181 */
+/***/ function(module, exports) {
+
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAANklEQVQ4T2NkoBJgpJI5DKMGEQ7JIRhG/////w/yGCMjI17XE/Qa1QwiHMwQFQRdNGrQcA4jAM7RCBNgfEe3AAAAAElFTkSuQmCC"
+
+/***/ },
+/* 182 */
+/***/ function(module, exports) {
+
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAASklEQVQ4T2NkoBJgpJI5DDgN+v///3+QJYyMjGA16Hx0B4wEg2BhQGrgw8IQHkZUMwjdJQMfa1TzGtUMGnxhNPhdRHIKJ1UDLvUA3m1gE0F4AtcAAAAASUVORK5CYIIA"
+
+/***/ },
+/* 183 */
+/***/ function(module, exports) {
+
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAANklEQVQ4T2NkoBJgpJI5DKMGEQ7JIRhG/////w/yGCMjI17XE/Qa1QwiHMwQFQRdNGrQcA4jAM7RCBNgfEe3AAAAAElFTkSuQmCC"
+
+/***/ },
+/* 184 */
+/***/ function(module, exports) {
+
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAOUlEQVQ4T2NkoBJgpJI5DKMGEQ5J+oTR/////yO7hZGREafFeF00jA0iHFcIFfSJtVEXgUOAaoENAKdMEBOdLi4FAAAAAElFTkSuQmCC"
+
+/***/ },
+/* 185 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -20312,7 +20364,7 @@
 	exports.default = Camera;
 
 /***/ },
-/* 182 */
+/* 186 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -20328,7 +20380,7 @@
 	// https://www.npmjs.com/package/keyb
 
 
-	var _keyb = __webpack_require__(183);
+	var _keyb = __webpack_require__(187);
 
 	var _keyb2 = _interopRequireDefault(_keyb);
 
@@ -20362,10 +20414,10 @@
 	exports.default = KeyboardInput;
 
 /***/ },
-/* 183 */
+/* 187 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var vkey = __webpack_require__(184)
+	var vkey = __webpack_require__(188)
 
 	var Keyb = {
 	    isDown: function(key) {
@@ -20400,7 +20452,7 @@
 
 
 /***/ },
-/* 184 */
+/* 188 */
 /***/ function(module, exports) {
 
 	var ua = typeof window !== 'undefined' ? window.navigator.userAgent : ''
@@ -20542,7 +20594,7 @@
 
 
 /***/ },
-/* 185 */
+/* 189 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -20554,15 +20606,19 @@
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	// import Dungeon from "scripts/model/Dungeon.js"
 
-	var _shortid = __webpack_require__(186);
+	var _shortid = __webpack_require__(190);
 
 	var _shortid2 = _interopRequireDefault(_shortid);
 
-	var _Adventurer = __webpack_require__(195);
+	var _Adventurer = __webpack_require__(199);
 
 	var _Adventurer2 = _interopRequireDefault(_Adventurer);
 
-	var _MonsterWave = __webpack_require__(198);
+	var _Monster = __webpack_require__(202);
+
+	var _Monster2 = _interopRequireDefault(_Monster);
+
+	var _MonsterWave = __webpack_require__(203);
 
 	var _MonsterWave2 = _interopRequireDefault(_MonsterWave);
 
@@ -20570,35 +20626,32 @@
 
 	var _data2 = _interopRequireDefault(_data);
 
-	var _monsters = __webpack_require__(201);
-
-	var _monsters2 = _interopRequireDefault(_monsters);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	var Game = function () {
-	    function Game(protogame) {
+	    function Game() {
+	        var _this = this;
+
+	        var game = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
 	        _classCallCheck(this, Game);
 
-	        protogame = protogame || new Object();
-
-	        this.adventurer = new _Adventurer2.default({
-	            position: { x: 3, y: 3 },
-	            inputs: protogame.inputs,
-	            game: this
+	        this.adventurer = new _Adventurer2.default(this, game.adventurer || {
+	            position: { x: 3, y: 3 }
 	        });
 
-	        this.wave = new _MonsterWave2.default({
-	            game: this,
-	            data: {
-	                capacity: 4,
-	                monsters: [_monsters2.default.RED_SLIME, _monsters2.default.BLUE_SLIME, _monsters2.default.GREEN_BAT, _monsters2.default.PINK_BAT]
-	            }
-	        });
+	        if (game.wave != undefined) {
+	            this.wave = new _MonsterWave2.default(this, game.wave);
+	        }
 
 	        this.monsters = new Array();
+	        if (game.monsters instanceof Array) {
+	            this.monsters = game.monsters.map(function (monster) {
+	                return new _Monster2.default(_this, monster);
+	            });
+	        }
 
 	        this.tiles = [{
 	            key: "1x1",
@@ -20668,7 +20721,9 @@
 	            }
 
 	            // Update the wave.
-	            this.wave.onAction();
+	            if (!!this.wave) {
+	                this.wave.onAction();
+	            }
 	        }
 	    }, {
 	        key: "entities",
@@ -20683,23 +20738,23 @@
 	exports.default = Game;
 
 /***/ },
-/* 186 */
+/* 190 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	module.exports = __webpack_require__(187);
+	module.exports = __webpack_require__(191);
 
 
 /***/ },
-/* 187 */
+/* 191 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var alphabet = __webpack_require__(188);
-	var encode = __webpack_require__(190);
-	var decode = __webpack_require__(192);
-	var isValid = __webpack_require__(193);
+	var alphabet = __webpack_require__(192);
+	var encode = __webpack_require__(194);
+	var decode = __webpack_require__(196);
+	var isValid = __webpack_require__(197);
 
 	// Ignore all milliseconds before a certain time to reduce the size of the date entropy without sacrificing uniqueness.
 	// This number should be updated every year or so to keep the generated id short.
@@ -20714,7 +20769,7 @@
 	// has a unique value for worker
 	// Note: I don't know if this is automatically set when using third
 	// party cluster solutions such as pm2.
-	var clusterWorkerId = __webpack_require__(194) || 0;
+	var clusterWorkerId = __webpack_require__(198) || 0;
 
 	// Counter is used when shortid is called multiple times in one second.
 	var counter;
@@ -20797,12 +20852,12 @@
 
 
 /***/ },
-/* 188 */
+/* 192 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var randomFromSeed = __webpack_require__(189);
+	var randomFromSeed = __webpack_require__(193);
 
 	var ORIGINAL = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-';
 	var alphabet;
@@ -20901,7 +20956,7 @@
 
 
 /***/ },
-/* 189 */
+/* 193 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -20932,12 +20987,12 @@
 
 
 /***/ },
-/* 190 */
+/* 194 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var randomByte = __webpack_require__(191);
+	var randomByte = __webpack_require__(195);
 
 	function encode(lookup, number) {
 	    var loopCounter = 0;
@@ -20957,7 +21012,7 @@
 
 
 /***/ },
-/* 191 */
+/* 195 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -20977,11 +21032,11 @@
 
 
 /***/ },
-/* 192 */
+/* 196 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var alphabet = __webpack_require__(188);
+	var alphabet = __webpack_require__(192);
 
 	/**
 	 * Decode the id to get the version and worker
@@ -21000,11 +21055,11 @@
 
 
 /***/ },
-/* 193 */
+/* 197 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var alphabet = __webpack_require__(188);
+	var alphabet = __webpack_require__(192);
 
 	function isShortId(id) {
 	    if (!id || typeof id !== 'string' || id.length < 6 ) {
@@ -21025,7 +21080,7 @@
 
 
 /***/ },
-/* 194 */
+/* 198 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -21034,7 +21089,7 @@
 
 
 /***/ },
-/* 195 */
+/* 199 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -21049,15 +21104,15 @@
 
 	var _data2 = _interopRequireDefault(_data);
 
-	var _shortid = __webpack_require__(186);
+	var _shortid = __webpack_require__(190);
 
 	var _shortid2 = _interopRequireDefault(_shortid);
 
-	var _Effect = __webpack_require__(196);
+	var _Effect = __webpack_require__(200);
 
 	var _Effect2 = _interopRequireDefault(_Effect);
 
-	var _AnimatedSprite = __webpack_require__(197);
+	var _AnimatedSprite = __webpack_require__(201);
 
 	var _AnimatedSprite2 = _interopRequireDefault(_AnimatedSprite);
 
@@ -21066,13 +21121,13 @@
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	var Adventurer = function () {
-	    function Adventurer(protoadventurer) {
+	    function Adventurer(game, protoadventurer) {
 	        _classCallCheck(this, Adventurer);
 
 	        protoadventurer = protoadventurer || {};
 
-	        this.inputs = protoadventurer.inputs;
-	        this.game = protoadventurer.game;
+	        this.inputs = protoadventurer.inputs || {};
+	        this.game = game;
 
 	        this.key = "adventurer";
 
@@ -21180,7 +21235,7 @@
 	exports.default = Adventurer;
 
 /***/ },
-/* 196 */
+/* 200 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -21220,7 +21275,7 @@
 	exports.default = Effect;
 
 /***/ },
-/* 197 */
+/* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -21231,7 +21286,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _shortid = __webpack_require__(186);
+	var _shortid = __webpack_require__(190);
 
 	var _shortid2 = _interopRequireDefault(_shortid);
 
@@ -21281,118 +21336,7 @@
 	exports.default = AnimatedSprite;
 
 /***/ },
-/* 198 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); // This class is responsible for spawning the
-	// monsters to attack the adventurer. Each wave
-	// is given a limit of how many monsters it can
-	// spawn at any given time, how many monsters it
-	// can spawn before the wave is done, and an
-	// array of monsters to spawn.
-
-	// Someday, if we decide to pivot away from
-	// the arcade-like beat-em-up gameplay, we'll
-	// rewrite the dungeons to be responsible for
-	// instantiating the monsters. At that time,
-	// we can deprecate this class. But until
-	// then, enjoy the waves of monsters. :]
-
-	var _data = __webpack_require__(166);
-
-	var _data2 = _interopRequireDefault(_data);
-
-	var _Monster = __webpack_require__(199);
-
-	var _Monster2 = _interopRequireDefault(_Monster);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	var MonsterWave = function () {
-	    function MonsterWave(wave) {
-	        _classCallCheck(this, MonsterWave);
-
-	        this.game = wave.game || undefined;
-
-	        // TODO: Change capacity from a variable
-	        // to a function of how many monsters have
-	        // already been killed, so the wave can
-	        // become more difficult during the wave.
-	        this.capacity = wave.data.capacity || 4;
-	        this.monsters = wave.data.monsters || [];
-	    }
-
-	    _createClass(MonsterWave, [{
-	        key: "onAction",
-	        value: function onAction() {
-	            // If attached to a game...
-	            if (this.game != undefined) {
-	                // If, at the moment, the number of monsters is
-	                // less than the intended capacity of monsters...
-	                if (this.game.monsters.length < this.capacity) {
-	                    // Then spawn a new monster in the game!
-	                    this.game.add("monsters", new _Monster2.default({
-	                        position: this.getRandomPosition(),
-	                        protomonster: this.getRandomMonster()
-	                    }));
-	                }
-	                // TODO: Use a for-loop so the wave can
-	                // spawn more than one monster per action.
-	            }
-	        }
-	        // Returns a random position to
-	        // spawn a monster, which should
-	        // generally be a position that
-	        // is just off-screen.
-
-	    }, {
-	        key: "getRandomPosition",
-	        value: function getRandomPosition() {
-	            // TODO: Update this method to consult the
-	            // bounds of either a DungeonRoom or Camera.
-	            if (Math.random() < 0.5) {
-	                return {
-	                    x: Math.random() < 0.5 ? -1 : _data2.default.FRAME.WIDTH,
-	                    y: Math.floor(Math.random() * _data2.default.FRAME.HEIGHT)
-	                };
-	            } else {
-	                return {
-	                    x: Math.floor(Math.random() * _data2.default.FRAME.WIDTH),
-	                    y: Math.random() < 0.5 ? -1 : _data2.default.FRAME.HEIGHT
-	                };
-	            }
-	        }
-	        // Returns a random monster
-	        // to be spawned. It randomizes
-	        // from the static pool of monsters
-	        // that was given for this wave.
-
-	    }, {
-	        key: "getRandomMonster",
-	        value: function getRandomMonster() {
-	            // TODO: Update this method to optionally
-	            // use weighted randomness if a weight is
-	            // assigned to each monster in the wave.
-	            var index = Math.floor(Math.random() * this.monsters.length);
-	            return this.monsters[index];
-	        }
-	    }]);
-
-	    return MonsterWave;
-	}();
-
-	exports.default = MonsterWave;
-
-/***/ },
-/* 199 */
+/* 202 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -21407,19 +21351,15 @@
 
 	var _data2 = _interopRequireDefault(_data);
 
-	var _Effect = __webpack_require__(196);
+	var _Effect = __webpack_require__(200);
 
 	var _Effect2 = _interopRequireDefault(_Effect);
 
-	var _AnimatedSprite = __webpack_require__(197);
+	var _AnimatedSprite = __webpack_require__(201);
 
 	var _AnimatedSprite2 = _interopRequireDefault(_AnimatedSprite);
 
-	var _Movement = __webpack_require__(200);
-
-	var _Movement2 = _interopRequireDefault(_Movement);
-
-	var _shortid = __webpack_require__(186);
+	var _shortid = __webpack_require__(190);
 
 	var _shortid2 = _interopRequireDefault(_shortid);
 
@@ -21428,40 +21368,57 @@
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	var Monster = function () {
-	    function Monster(monster) {
+	    function Monster(game, monster) {
 	        _classCallCheck(this, Monster);
 
 	        this.key = "monster" + "-" + _shortid2.default.generate();
 	        this.color = monster.protomonster.color || _data2.default.COLORS.PINK;
-	        this.spritename = monster.protomonster.sprite || _data2.default.SPRITES.MONSTERS.SLIME;
+	        this.basesprite = monster.protomonster.sprite || _data2.default.SPRITES.MONSTERS.SLIME;
+	        this.sprite = this.pickSprite();
 
-	        this.game = monster.game;
+	        this.game = game;
 
 	        this.position = monster.position;
 	        this.transition = true;
-	        this.movement = monster.protomonster.movement;
+	        this.movement = monster.protomonster.movement || function () {
+	            var dx = this.game.adventurer.position.x - this.position.x;
+	            var dy = this.game.adventurer.position.y - this.position.y;
+
+	            if (Math.abs(dx) > Math.abs(dy)) {
+	                if (dx > 0) return { x: +1 };
+	                if (dx < 0) return { x: -1 };
+	            } else {
+	                if (dy > 0) return { y: +1 };
+	                if (dy < 0) return { y: -1 };
+	            }
+	        };
+	        this.turnCounter = monster.protomonster.turnCounter || function () {
+	            this.phase = !this.phase;
+	        };
 
 	        this.health = monster.protomonster.health || 1;
 	    }
 
 	    _createClass(Monster, [{
+	        key: "pickSprite",
+	        value: function pickSprite() {
+	            if (this.phase == true) {
+	                return this.basesprite.ALPHA;
+	            } else {
+	                return this.basesprite.OMEGA;
+	            }
+	        }
+	    }, {
 	        key: "onAction",
 	        value: function onAction() {
 	            this.phase = this.phase || false;
-	            this.phase = !this.phase;
+	            this.turnCounter();
+	            this.sprite = this.pickSprite();
 
 	            this.animation = false;
 
 	            if (this.phase == true) {
-	                switch (this.movement) {
-	                    case "simplechase":
-	                        this.move(_Movement2.default.getSimpleChaseMovement(this.game.adventurer.position, this.position));
-	                        break;
-	                    case "wander":
-	                    case "wander-orthogonal":
-	                    case "wander-diagonal":
-	                        this.move(_Movement2.default.getWanderMovement(_Movement2.default[this.movement.slice(7)].apply()));
-	                }
+	                this.move(this.movement());
 	            }
 	        }
 	    }, {
@@ -21530,13 +21487,103 @@
 	            }
 	        }
 	    }, {
-	        key: "sprite",
-	        get: function get() {
-	            if (this.phase == true) {
-	                return this.spritename.ALPHA;
-	            } else {
-	                return this.spritename.OMEGA;
+	        key: "getOffscreenMovement",
+	        value: function getOffscreenMovement() {
+	            if (this.position.x < 0) return { x: +1 };
+	            if (this.position.x >= _data2.default.FRAME.WIDTH) return { x: -1 };
+	            if (this.position.y < 0) return { y: +1 };
+	            if (this.position.y >= _data2.default.FRAME.HEIGHT) return { y: -1 };
+	            return false;
+	        }
+	    }, {
+	        key: "pruneMovement",
+	        value: function pruneMovement(choices) {
+	            var _iteratorNormalCompletion = true;
+	            var _didIteratorError = false;
+	            var _iteratorError = undefined;
+
+	            try {
+	                for (var _iterator = choices[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	                    var choice = _step.value;
+
+	                    var movementVector = {
+	                        "x": choice.x || 0,
+	                        "y": choice.y || 0
+	                    };
+	                    var _iteratorNormalCompletion2 = true;
+	                    var _didIteratorError2 = false;
+	                    var _iteratorError2 = undefined;
+
+	                    try {
+	                        for (var _iterator2 = this.game.monsters[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+	                            var monster = _step2.value;
+
+	                            if (monster.position.x == this.position.x + movementVector.x && monster.position.y == this.position.y + movementVector.y) {
+	                                choices = this.removeFromArray(choices, choice);
+	                            }
+	                        }
+	                    } catch (err) {
+	                        _didIteratorError2 = true;
+	                        _iteratorError2 = err;
+	                    } finally {
+	                        try {
+	                            if (!_iteratorNormalCompletion2 && _iterator2.return) {
+	                                _iterator2.return();
+	                            }
+	                        } finally {
+	                            if (_didIteratorError2) {
+	                                throw _iteratorError2;
+	                            }
+	                        }
+	                    }
+
+	                    if (this.outOfBounds(movementVector)) {
+	                        choices = this.removeFromArray(choices, choice);
+	                    }
+	                }
+	            } catch (err) {
+	                _didIteratorError = true;
+	                _iteratorError = err;
+	            } finally {
+	                try {
+	                    if (!_iteratorNormalCompletion && _iterator.return) {
+	                        _iterator.return();
+	                    }
+	                } finally {
+	                    if (_didIteratorError) {
+	                        throw _iteratorError;
+	                    }
+	                }
 	            }
+
+	            return choices;
+	        }
+	    }, {
+	        key: "outOfBounds",
+	        value: function outOfBounds(positionVector) {
+
+	            if (positionVector.x + this.position.x < 0) {
+	                return true;
+	            }
+	            if (positionVector.x + this.position.x >= _data2.default.FRAME.WIDTH) {
+	                return true;
+	            }
+	            if (positionVector.y + this.position.y < 0) {
+	                return true;
+	            }
+	            if (positionVector.y + this.position.y >= _data2.default.FRAME.HEIGHT) {
+	                return true;
+	            }
+	            return false;
+	        }
+	    }, {
+	        key: "removeFromArray",
+	        value: function removeFromArray(myarray, value) {
+	            var temp = myarray;
+	            var index = temp.indexOf(value);
+	            delete temp[index];
+	            if (index > -1) temp.splice(index, 1);
+	            return temp;
 	        }
 	    }]);
 
@@ -21546,7 +21593,7 @@
 	exports.default = Monster;
 
 /***/ },
-/* 200 */
+/* 203 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -21555,123 +21602,109 @@
 	    value: true
 	});
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); // This class is responsible for spawning the
+	// monsters to attack the adventurer. Each wave
+	// is given a limit of how many monsters it can
+	// spawn at any given time, how many monsters it
+	// can spawn before the wave is done, and an
+	// array of monsters to spawn.
+
+	// Someday, if we decide to pivot away from
+	// the arcade-like beat-em-up gameplay, we'll
+	// rewrite the dungeons to be responsible for
+	// instantiating the monsters. At that time,
+	// we can deprecate this class. But until
+	// then, enjoy the waves of monsters. :]
 
 	var _data = __webpack_require__(166);
 
 	var _data2 = _interopRequireDefault(_data);
+
+	var _Monster = __webpack_require__(202);
+
+	var _Monster2 = _interopRequireDefault(_Monster);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var Movement = function () {
-	    function Movement() {
-	        _classCallCheck(this, Movement);
+	var MonsterWave = function () {
+	    function MonsterWave(game, wave) {
+	        _classCallCheck(this, MonsterWave);
+
+	        this.game = game;
+
+	        // TODO: Change capacity from a variable
+	        // to a function of how many monsters have
+	        // already been killed, so the wave can
+	        // become more difficult during the wave.
+	        this.capacity = wave.capacity || 4;
+	        this.monsters = wave.monsters || [];
 	    }
 
-	    _createClass(Movement, null, [{
-	        key: "getSimpleChaseMovement",
-	        value: function getSimpleChaseMovement(target, current) {
-	            var dx = target.x - current.x;
-	            var dy = target.y - current.y;
-
-	            if (Math.abs(dx) > Math.abs(dy)) {
-	                if (dx > 0) return { x: +1 };
-	                if (dx < 0) return { x: -1 };
-	            } else {
-	                if (dy > 0) return { y: +1 };
-	                if (dy < 0) return { y: -1 };
+	    _createClass(MonsterWave, [{
+	        key: "onAction",
+	        value: function onAction() {
+	            // If attached to a game...
+	            if (this.game != undefined) {
+	                // If, at the moment, the number of monsters is
+	                // less than the intended capacity of monsters...
+	                if (this.game.monsters.length < this.capacity) {
+	                    // Then spawn a new monster in the game!
+	                    this.game.add("monsters", new _Monster2.default(this.game, {
+	                        position: this.getRandomPosition(),
+	                        protomonster: this.getRandomMonster()
+	                    }));
+	                }
+	                // TODO: Use a for-loop so the wave can
+	                // spawn more than one monster per action.
 	            }
 	        }
-	    }, {
-	        key: "getWanderMovement",
-	        value: function getWanderMovement(validLocations) {
-	            validLocations = validLocations || this.orthogonal();
+	        // Returns a random position to
+	        // spawn a monster, which should
+	        // generally be a position that
+	        // is just off-screen.
 
-	            var diceroll = Math.floor(Math.random() * validLocations.length + 0);
+	    }, {
+	        key: "getRandomPosition",
+	        value: function getRandomPosition() {
+	            // TODO: Update this method to consult the
+	            // bounds of either a DungeonRoom or Camera.
+	            if (Math.random() < 0.5) {
+	                return {
+	                    x: Math.random() < 0.5 ? -1 : _data2.default.FRAME.WIDTH,
+	                    y: Math.floor(Math.random() * _data2.default.FRAME.HEIGHT)
+	                };
+	            } else {
+	                return {
+	                    x: Math.floor(Math.random() * _data2.default.FRAME.WIDTH),
+	                    y: Math.random() < 0.5 ? -1 : _data2.default.FRAME.HEIGHT
+	                };
+	            }
+	        }
+	        // Returns a random monster
+	        // to be spawned. It randomizes
+	        // from the static pool of monsters
+	        // that was given for this wave.
 
-	            return validLocations[diceroll];
-	        }
 	    }, {
-	        key: "horizontal",
-	        value: function horizontal(speed) {
-	            speed = speed || 1;
-	            return [{ x: -speed }, { x: +speed }];
-	        }
-	    }, {
-	        key: "vertical",
-	        value: function vertical(speed) {
-	            speed = speed || 1;
-	            return [{ y: -speed }, { y: +speed }];
-	        }
-	    }, {
-	        key: "orthogonal",
-	        value: function orthogonal(speed) {
-	            return Movement.horizontal(speed).concat(Movement.vertical(speed));
-	        }
-	    }, {
-	        key: "diagonal",
-	        value: function diagonal(speed) {
-	            speed = speed || 1;
-	            return [{ x: -speed, y: -speed }, { x: +speed, y: -speed }, { x: -speed, y: +speed }, { x: +speed, y: +speed }];
+	        key: "getRandomMonster",
+	        value: function getRandomMonster() {
+	            // TODO: Update this method to optionally
+	            // use weighted randomness if a weight is
+	            // assigned to each monster in the wave.
+	            var index = Math.floor(Math.random() * this.monsters.length);
+	            return this.monsters[index];
 	        }
 	    }]);
 
-	    return Movement;
+	    return MonsterWave;
 	}();
 
-	exports.default = Movement;
+	exports.default = MonsterWave;
 
 /***/ },
-/* 201 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _data = __webpack_require__(166);
-
-	var _data2 = _interopRequireDefault(_data);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = {
-	    RED_SLIME: {
-	        sprite: _data2.default.SPRITES.MONSTERS.SLIME,
-	        color: _data2.default.COLORS.RED,
-	        health: 1,
-	        strength: 1,
-	        movement: "simplechase"
-	    },
-	    BLUE_SLIME: {
-	        sprite: _data2.default.SPRITES.MONSTERS.SLIME,
-	        color: _data2.default.COLORS.BLUE,
-	        health: 2,
-	        strength: 1,
-	        movement: "simplechase"
-	    },
-	    GREEN_BAT: {
-	        sprite: _data2.default.SPRITES.MONSTERS.BAT,
-	        color: _data2.default.COLORS.GREEN,
-	        health: 2,
-	        strength: 1,
-	        movement: "wander-orthogonal"
-	    },
-	    PINK_BAT: {
-	        sprite: _data2.default.SPRITES.MONSTERS.BAT,
-	        color: _data2.default.COLORS.PINK,
-	        health: 1,
-	        strength: 2,
-	        movement: "wander-diagonal"
-	    }
-	};
-
-/***/ },
-/* 202 */
+/* 204 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -21697,6 +21730,137 @@
 	};
 
 	exports.default = Frame;
+
+/***/ },
+/* 205 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _data = __webpack_require__(166);
+
+	var _data2 = _interopRequireDefault(_data);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = {
+	    RED_SLIME: {
+	        sprite: _data2.default.SPRITES.MONSTERS.SLIME,
+	        color: _data2.default.COLORS.RED,
+	        health: 1,
+	        strength: 1
+	    },
+	    BLUE_SLIME: {
+	        sprite: _data2.default.SPRITES.MONSTERS.SLIME,
+	        color: _data2.default.COLORS.BLUE,
+	        health: 2,
+	        strength: 1
+	    },
+	    RED_ORC: {
+	        sprite: _data2.default.SPRITES.MONSTERS.ORC,
+	        color: _data2.default.COLORS.RED,
+	        health: 1,
+	        strength: 1
+	    },
+	    BLUE_ORC: {
+	        sprite: _data2.default.SPRITES.MONSTERS.ORC,
+	        color: _data2.default.COLORS.BLUE,
+	        health: 2,
+	        strength: 1
+	    },
+	    GREEN_ORC: {
+	        sprite: _data2.default.SPRITES.MONSTERS.ORC,
+	        color: _data2.default.COLORS.GREEN,
+	        health: 3,
+	        strength: 1
+	    },
+	    WHITE_TROLL: {
+	        sprite: _data2.default.SPRITES.MONSTERS.TROLL,
+	        color: _data2.default.COLORS.WHITE,
+	        health: 5,
+	        strength: 5
+	    },
+	    RED_BAT: {
+	        sprite: _data2.default.SPRITES.MONSTERS.BAT,
+	        color: _data2.default.COLORS.RED,
+	        health: 1,
+	        strength: 1,
+	        movement: function movement() {
+	            if (this.getOffscreenMovement()) return this.getOffscreenMovement();
+	            var choices = [{ x: -1 }, { x: +1 }, { y: -1 }, { y: +1 }];
+	            choices = this.pruneMovement(choices);
+	            return choices[Math.floor(Math.random() * choices.length)];
+	        }
+	    },
+	    BLUE_BAT: {
+	        sprite: _data2.default.SPRITES.MONSTERS.BAT,
+	        color: _data2.default.COLORS.BLUE,
+	        health: 1,
+	        strength: 1,
+	        turnCounter: function turnCounter() {
+	            this.phase = true;
+	        },
+	        movement: function movement() {
+	            if (this.getOffscreenMovement()) return this.getOffscreenMovement();
+	            var choices = [{ x: -1 }, { x: +1 }, { y: -1 }, { y: +1 }];
+	            choices = this.pruneMovement(choices);
+	            return choices[Math.floor(Math.random() * choices.length)];
+	        }
+	    },
+	    GREEN_BAT: {
+	        sprite: _data2.default.SPRITES.MONSTERS.BAT,
+	        color: _data2.default.COLORS.GREEN,
+	        health: 1,
+	        strength: 1,
+	        turnCounter: function turnCounter() {
+	            this.phase = true;
+	        },
+	        movement: function movement() {
+	            if (this.getOffscreenMovement()) return this.getOffscreenMovement();
+	            var choices = [{ x: -1, y: -1 }, { x: -1, y: +1 }, { x: +1, y: -1 }, { x: +1, y: +1 }];
+	            choices = this.pruneMovement(choices);
+	            return choices[Math.floor(Math.random() * choices.length)];
+	        }
+	    },
+	    FAST_BAT: {
+	        sprite: _data2.default.SPRITES.MONSTERS.BAT,
+	        color: _data2.default.COLORS.PINK,
+	        health: 1,
+	        strength: 1,
+	        movement: function movement() {
+	            if (this.getOffscreenMovement()) return this.getOffscreenMovement();
+	            var choices = [{ x: -2 }, { x: +2 }, { y: -2 }, { y: +2 }];
+	            choices = this.pruneMovement(choices);
+	            return choices[Math.floor(Math.random() * choices.length)];
+	        }
+	    },
+	    STONE_BAT: {
+	        sprite: _data2.default.SPRITES.MONSTERS.BAT,
+	        color: _data2.default.COLORS.GRAY,
+	        health: 3,
+	        strength: 1,
+	        turnCounter: function turnCounter() {
+	            this.turn = this.turn + Math.floor(Math.random() * 3) + 1 || 0;
+	            if (this.turn >= 3) {
+	                this.phase = true;
+	                this.turn = 0;
+	            } else {
+	                this.phase = false;
+	            }
+	        },
+	        movement: function movement() {
+	            if (this.getOffscreenMovement()) return this.getOffscreenMovement();
+	            var choices = [{ x: -1 }, { x: +1 }, { y: -1 }, { y: +1 }];
+	            choices = this.pruneMovement(choices);
+	            return choices[Math.floor(Math.random() * choices.length)];
+	        }
+	    }
+
+	};
 
 /***/ }
 /******/ ]);
