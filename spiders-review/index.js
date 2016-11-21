@@ -97,8 +97,18 @@
 	    }, {
 	        capacity: 1,
 	        killcount: 5,
+	        monsters: [_monsters2.default.NORMAL_SPIDER],
+	        message: "Room 0.1: spider test"
+	    }, {
+	        capacity: 1,
+	        killcount: 2,
 	        monsters: [_monsters2.default.MOTHER_SPIDER],
-	        message: "Room 0: spider test"
+	        message: "Room 0.2: mother spider test"
+	    }, {
+	        capacity: 1,
+	        killcount: 2,
+	        monsters: [_monsters2.default.WEB_SPIDER],
+	        message: "Room 0.3: web spider test"
 	    },
 	    // orcs
 	    {
