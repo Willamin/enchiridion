@@ -58,15 +58,15 @@
 
 	var _Render2 = _interopRequireDefault(_Render);
 
-	var _Game = __webpack_require__(211);
+	var _Game = __webpack_require__(215);
 
 	var _Game2 = _interopRequireDefault(_Game);
 
-	var _Frame = __webpack_require__(228);
+	var _Frame = __webpack_require__(232);
 
 	var _Frame2 = _interopRequireDefault(_Frame);
 
-	var _monsters = __webpack_require__(224);
+	var _monsters = __webpack_require__(228);
 
 	var _monsters2 = _interopRequireDefault(_monsters);
 
@@ -222,14 +222,14 @@
 	// log them here.
 
 	if (true) {
-	    __webpack_require__(229)("stats.json", function (response) {
+	    __webpack_require__(233)("stats.json", function (response) {
 	        var stats = JSON.parse(response.responseText);
 	        stats.errors.forEach(function (error) {
-	            error = __webpack_require__(230)(error);
+	            error = __webpack_require__(234)(error);
 	            console.error(error);
 	        });
 	        stats.warnings.forEach(function (warning) {
-	            warning = __webpack_require__(230)(warning);
+	            warning = __webpack_require__(234)(warning);
 	            console.warn(warning);
 	        });
 	    });
@@ -239,7 +239,7 @@
 	// run our game, namely, the browser. :)
 
 	if (true) {
-	    __webpack_require__(232);
+	    __webpack_require__(236);
 	}
 
 /***/ },
@@ -20290,11 +20290,11 @@
 
 	var _Entity2 = _interopRequireDefault(_Entity);
 
-	var _Camera = __webpack_require__(209);
+	var _Camera = __webpack_require__(213);
 
 	var _Camera2 = _interopRequireDefault(_Camera);
 
-	var _HUD = __webpack_require__(210);
+	var _HUD = __webpack_require__(214);
 
 	var _HUD2 = _interopRequireDefault(_HUD);
 
@@ -20588,24 +20588,30 @@
 	            SPIDER: {
 	                ALPHA: __webpack_require__(181),
 	                OMEGA: __webpack_require__(182)
+	            },
+	            MOTHER_SPIDER: {
+	                ALPHA: __webpack_require__(183),
+	                OMEGA: __webpack_require__(184)
 	            }
 	        },
 	        EFFECTS: {
-	            SLICE: [__webpack_require__(183), __webpack_require__(184), __webpack_require__(185)],
-	            SLASH: [__webpack_require__(186), __webpack_require__(187), __webpack_require__(188)]
+	            SLICE: [__webpack_require__(185), __webpack_require__(186), __webpack_require__(187)],
+	            SLASH: [__webpack_require__(188), __webpack_require__(189), __webpack_require__(190)]
 	        },
 	        TERRAIN: {
-	            OCTOTHORPE: [__webpack_require__(189)],
-	            DOT: [__webpack_require__(190), __webpack_require__(191)]
+	            OCTOTHORPE: [__webpack_require__(191)],
+	            DOT: [__webpack_require__(192), __webpack_require__(193)],
+	            WEB: __webpack_require__(194)
 	        },
-	        BLOOD: [__webpack_require__(192), __webpack_require__(193), __webpack_require__(194), __webpack_require__(195), __webpack_require__(196), __webpack_require__(197), __webpack_require__(198), __webpack_require__(199), __webpack_require__(200), __webpack_require__(201), __webpack_require__(202), __webpack_require__(203), __webpack_require__(204), __webpack_require__(205)],
+	        BLOOD: [__webpack_require__(195), __webpack_require__(196), __webpack_require__(197), __webpack_require__(198), __webpack_require__(199), __webpack_require__(200), __webpack_require__(201), __webpack_require__(202), __webpack_require__(203), __webpack_require__(204), __webpack_require__(205), __webpack_require__(206), __webpack_require__(207), __webpack_require__(208)],
 	        HUD: {
 	            HEART: {
-	                0: __webpack_require__(206),
-	                50: __webpack_require__(207),
-	                100: __webpack_require__(208)
+	                0: __webpack_require__(209),
+	                50: __webpack_require__(210),
+	                100: __webpack_require__(211)
 	            }
-	        }
+	        },
+	        NULL: __webpack_require__(212)
 	    }
 	};
 
@@ -20691,43 +20697,43 @@
 /* 183 */
 /***/ function(module, exports) {
 
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAaElEQVQ4T83TUQrAIAwDUHP/Q1cmVHQWU2sH81d8pFFRkhaSnBKCREQ0AIBmuCHr8DgNhRjQk+068iLb0RTRDtilmKOdImaiCPIdFE2zJHogb7nv8qeyU6AbZBrtfxB7uWyffloG6H4F5MM4E4ve1rYAAAAASUVORK5CYIIA"
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAAEZoTcHAAAAnElEQVQ4ja1SWw7DMAgDtPsfOd4HLbGApEs1VFWpsc0jVRGVk7Aj9j8EwNgjn9YmSKrZUXnoaj95t3IaJHbyjqyt2MBYaRSAvz0YqXg/Q1So01+COi6zWWOyWCKzHXfEAqqWLJ4tAWCDTWN+LhepFgVrnyJibJ9yYc+4cTq123b49vferKip449ffnvgz6al1X7Y/mHWRvB7HG/pC+iTfiuwmzRyAAAAAElFTkSuQmCC"
 
 /***/ },
 /* 184 */
 /***/ function(module, exports) {
 
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAQElEQVQ4T2NkoBJgpJI5DKMGEQ7J0TAiI4z+////n5GRkeSwQ9FAriEg91LfIEpcg+KiwWcQ4QjGr4LkaMZlHACfoRgTgNn4NAAAAABJRU5ErkJgggAA"
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAAEZoTcHAAAAnElEQVQ4ja1SUQ5DIQijZPc/8tgHG7Jafc9lxhiEUgoKM9jJ8iP0PxIinnvPQ9IUCGBG9KZn+oH7ZA6CDfqrphkkFHDtL0k9nGjKKVWoHRERkUY/08j9rkDVNxXc1BAJnf68ermIj2xqgBFyVmlPDwmvgqQz1xA9x4q++72HSa5U+Ov3Xn0EXaeeeWX0q5C0mk+nv+hVJNxfx1N6Aaq8dS/bdZEoAAAAAElFTkSuQmCC"
 
 /***/ },
 /* 185 */
 /***/ function(module, exports) {
 
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAM0lEQVQ4T2NkoBJgpJI5DKMGEQ7J0TAaDSPCIUBYBfXT0f////8zMjKSbTDZGtE9SzWDAHgCBBPbGH3jAAAAAElFTkSuQmCC"
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAaElEQVQ4T83TUQrAIAwDUHP/Q1cmVHQWU2sH81d8pFFRkhaSnBKCREQ0AIBmuCHr8DgNhRjQk+068iLb0RTRDtilmKOdImaiCPIdFE2zJHogb7nv8qeyU6AbZBrtfxB7uWyffloG6H4F5MM4E4ve1rYAAAAASUVORK5CYIIA"
 
 /***/ },
 /* 186 */
 /***/ function(module, exports) {
 
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAaklEQVQ4T63UQRLAIAgDQPP/R9PhQMdaKWnEuzuRqBhNC03OuCEzMwAy/Nh4gr0SqNj2KAqWzsQxL4KdWwmx2GdLkYrByrpZrIQ8DYNR0Ixlw6eheErZ1fgNRbo1mQTtMBlasSNo/oLaoAtE1TgT0BJ5pAAAAABJRU5ErkJgggAA"
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAQElEQVQ4T2NkoBJgpJI5DKMGEQ7J0TAiI4z+////n5GRkeSwQ9FAriEg91LfIEpcg+KiwWcQ4QjGr4LkaMZlHACfoRgTgNn4NAAAAABJRU5ErkJgggAA"
 
 /***/ },
 /* 187 */
 /***/ function(module, exports) {
 
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAATklEQVQ4T2NkoBJgpJI5DKMGEQ5JnGH0/////4yMjESHIV6FpBhG0EaQYSCPEXId/QyCBTMhbxJ0EXJ84TOMJIPwJYJRgyjIIoS1oqoAAOD4GBO8Slc2AAAAAElFTkSuQmCC"
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAM0lEQVQ4T2NkoBJgpJI5DKMGEQ7J0TAaDSPCIUBYBfXT0f////8zMjKSbTDZGtE9SzWDAHgCBBPbGH3jAAAAAElFTkSuQmCC"
 
 /***/ },
 /* 188 */
 /***/ function(module, exports) {
 
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAANklEQVQ4T2NkoBJgpJI5DKMGEQ7JIRhG/////w/yGCMjI17XE/Qa1QwiHMwQFQRdNGrQcA4jAM7RCBNgfEe3AAAAAElFTkSuQmCC"
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAaklEQVQ4T63UQRLAIAgDQPP/R9PhQMdaKWnEuzuRqBhNC03OuCEzMwAy/Nh4gr0SqNj2KAqWzsQxL4KdWwmx2GdLkYrByrpZrIQ8DYNR0Ixlw6eheErZ1fgNRbo1mQTtMBlasSNo/oLaoAtE1TgT0BJ5pAAAAABJRU5ErkJgggAA"
 
 /***/ },
 /* 189 */
 /***/ function(module, exports) {
 
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAASklEQVQ4T2NkoBJgpJI5DDgN+v///3+QJYyMjGA16Hx0B4wEg2BhQGrgw8IQHkZUMwjdJQMfa1TzGtUMGnxhNPhdRHIKJ1UDLvUA3m1gE0F4AtcAAAAASUVORK5CYIIA"
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAATklEQVQ4T2NkoBJgpJI5DKMGEQ5JnGH0/////4yMjESHIV6FpBhG0EaQYSCPEXId/QyCBTMhbxJ0EXJ84TOMJIPwJYJRgyjIIoS1oqoAAOD4GBO8Slc2AAAAAElFTkSuQmCC"
 
 /***/ },
 /* 190 */
@@ -20739,112 +20745,136 @@
 /* 191 */
 /***/ function(module, exports) {
 
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAOUlEQVQ4T2NkoBJgpJI5DKMGEQ5J+oTR/////yO7hZGREafFeF00jA0iHFcIFfSJtVEXgUOAaoENAKdMEBOdLi4FAAAAAElFTkSuQmCC"
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAASklEQVQ4T2NkoBJgpJI5DDgN+v///3+QJYyMjGA16Hx0B4wEg2BhQGrgw8IQHkZUMwjdJQMfa1TzGtUMGnxhNPhdRHIKJ1UDLvUA3m1gE0F4AtcAAAAASUVORK5CYIIA"
 
 /***/ },
 /* 192 */
 /***/ function(module, exports) {
 
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAABupgeRAAAARUlEQVQ4jWNgGAV0A////8clxYhHNSMjFlkmUu1hJKwC1R58NmAFBDRgeoOqniYKIPsbT2zglP7//z+aOMJJWF08CsgDAF55Hf+SnBz6AAAAAElFTkSuQmCC"
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAANklEQVQ4T2NkoBJgpJI5DKMGEQ7JIRhG/////w/yGCMjI17XE/Qa1QwiHMwQFQRdNGrQcA4jAM7RCBNgfEe3AAAAAElFTkSuQmCC"
 
 /***/ },
 /* 193 */
 /***/ function(module, exports) {
 
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAABupgeRAAAATUlEQVQ4je2RSwoAIAhEX9H9rzwtAoM+IgSuektHx0HhAyBJ0k0te/fUyqoCNbjzusFks7fuUWmHlKckUYa9c4ME/CcQPKtn/zT/yaMD5Sog9sNT4fwAAAAASUVORK5CYII="
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAOUlEQVQ4T2NkoBJgpJI5DKMGEQ5J+oTR/////yO7hZGREafFeF00jA0iHFcIFfSJtVEXgUOAaoENAKdMEBOdLi4FAAAAAElFTkSuQmCC"
 
 /***/ },
 /* 194 */
 /***/ function(module, exports) {
 
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAABupgeRAAAAUElEQVQ4je2PMQ4AIAgDwfj/L9fBBCNUiJuDN5KS9kQ+CwD0rnla1QfabRVpoGOsyjecphu9nOQ0CoconTnE9NYAYEZpzuAO+Q/fk1w+DzAAPgseC/XCg0oAAAAASUVORK5CYII="
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAAEZoTcHAAAAm0lEQVQ4jbVUSRLDMAhDTP//ZNMDbaLKip0cysmLBBKMjQjEk8hH6LuEqrEnNKhqVA0g9wQgOfGKIDhhQrrUAhrBSjxB5Nrir8X1rBNII0nEyIkX0N0MasCxSL7mTFwEyPO8qnpz1RkdnCBmDQJImya+8xInwXM4OLyYi/w4W/g+TdoHJA3g7Ycwy7BFLj1YqBK2UEO4E//5BDje05d4F+ALdUEAAAAASUVORK5CYII="
 
 /***/ },
 /* 195 */
 /***/ function(module, exports) {
 
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAABupgeRAAAAUUlEQVQ4je2RMQ7AMAgDbf7/Z2doBgSUZEul5jaQkWUD/BD6QdLckpUYACyreyyvSEp6uzev23H4AiFPERqusRy9CxrUTyu1Q8Oiyp3fX04wAOhZHf/PbHdjAAAAAElFTkSuQmCC"
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAABupgeRAAAARUlEQVQ4jWNgGAV0A////8clxYhHNSMjFlkmUu1hJKwC1R58NmAFBDRgeoOqniYKIPsbT2zglP7//z+aOMJJWF08CsgDAF55Hf+SnBz6AAAAAElFTkSuQmCC"
 
 /***/ },
 /* 196 */
 /***/ function(module, exports) {
 
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAABupgeRAAAATUlEQVQ4jWNgGAU0AIxw1v///6FCjIw4FCNpgKsmqIeJVCcxYRoJYaPZiQX8//+fsKKBA3DnYbqTqFBC1oMvjlDUwYKRKBvwx/0owAQAswcg/SQnlT4AAAAASUVORK5CYII="
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAABupgeRAAAATUlEQVQ4je2RSwoAIAhEX9H9rzwtAoM+IgSuektHx0HhAyBJ0k0te/fUyqoCNbjzusFks7fuUWmHlKckUYa9c4ME/CcQPKtn/zT/yaMD5Sog9sNT4fwAAAAASUVORK5CYII="
 
 /***/ },
 /* 197 */
 /***/ function(module, exports) {
 
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAABupgeRAAAATElEQVQ4je2RSQ4AIAgDhfj/L+O1KUQaE2/MUacsYa3hNxHRvkhVMOaKhNh9NjMWigDVpgyP1G65dbXuQOQdnP7QyDZ3KA2JlwMPwAHHWCEFHky82QAAAABJRU5ErkJggg=="
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAABupgeRAAAAUElEQVQ4je2PMQ4AIAgDwfj/L9fBBCNUiJuDN5KS9kQ+CwD0rnla1QfabRVpoGOsyjecphu9nOQ0CoconTnE9NYAYEZpzuAO+Q/fk1w+DzAAPgseC/XCg0oAAAAASUVORK5CYII="
 
 /***/ },
 /* 198 */
 /***/ function(module, exports) {
 
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAABupgeRAAAARklEQVQ4jWNgGAUDAv7//0+CUkzVTFR2D1UBxLkEvciIrJqBgYGRkRG/BpyexhpECBsgKuDGIytFs5MJlwTJAJeTRgExAAC+4CPxbiFWOgAAAABJRU5ErkJggg=="
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAABupgeRAAAAUUlEQVQ4je2RMQ7AMAgDbf7/Z2doBgSUZEul5jaQkWUD/BD6QdLckpUYACyreyyvSEp6uzev23H4AiFPERqusRy9CxrUTyu1Q8Oiyp3fX04wAOhZHf/PbHdjAAAAAElFTkSuQmCC"
 
 /***/ },
 /* 199 */
 /***/ function(module, exports) {
 
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAABupgeRAAAAT0lEQVQ4je2RQRIAEAwDG///cxyZtipm3MjVkm2ZvR6SJGumiQ+pxxFFfQfwgKS0aUg0ph7fcGdLB0rS0BHK4755NQwiUTcMJdVk6/Bj1gHyvyn5U1NXWgAAAABJRU5ErkJggg=="
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAABupgeRAAAATUlEQVQ4jWNgGAU0AIxw1v///6FCjIw4FCNpgKsmqIeJVCcxYRoJYaPZiQX8//+fsKKBA3DnYbqTqFBC1oMvjlDUwYKRKBvwx/0owAQAswcg/SQnlT4AAAAASUVORK5CYII="
 
 /***/ },
 /* 200 */
 /***/ function(module, exports) {
 
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAABupgeRAAAATklEQVQ4jWNgGNHg////dNGPqY6wzv8wgFU1I37zGBnRFTDiUoqm7f///xDNKAZg1YNmCRMuU3HahsYn6AcsADl88IUpLjnyY3AU0BAAAK8DON2q1nCSAAAAAElFTkSuQmCC"
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAABupgeRAAAATElEQVQ4je2RSQ4AIAgDhfj/L+O1KUQaE2/MUacsYa3hNxHRvkhVMOaKhNh9NjMWigDVpgyP1G65dbXuQOQdnP7QyDZ3KA2JlwMPwAHHWCEFHky82QAAAABJRU5ErkJggg=="
 
 /***/ },
 /* 201 */
 /***/ function(module, exports) {
 
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAABupgeRAAAAYElEQVQ4je2SwQ7AIAhDxf//57cDi0GtEi87LPZgoCkUDKX8A8DnPrOnnkKyQOSrrGmvB2bWBDZIJWJBlaxUv27pDtphnnXVKHfwLoAHydIrz64mfvzuas4ualDv04sUD4fOUNUI/LFxAAAAAElFTkSuQmCC"
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAABupgeRAAAARklEQVQ4jWNgGAUDAv7//0+CUkzVTFR2D1UBxLkEvciIrJqBgYGRkRG/BpyexhpECBsgKuDGIytFs5MJlwTJAJeTRgExAAC+4CPxbiFWOgAAAABJRU5ErkJggg=="
 
 /***/ },
 /* 202 */
 /***/ function(module, exports) {
 
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAABupgeRAAAAWUlEQVQ4jeWSOw7AMAhDA/e/8+tWWQ79RGmXxAMDtvmJ1pYH8I/ZOODMZKmLiLG+Go0qKpnOurmh3Ew92dP3SC18dTjND+/gIwGqeLhvP9Lb15h6oQ/8++EAitA+33yaGL4AAAAASUVORK5CYII="
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAABupgeRAAAAT0lEQVQ4je2RQRIAEAwDG///cxyZtipm3MjVkm2ZvR6SJGumiQ+pxxFFfQfwgKS0aUg0ph7fcGdLB0rS0BHK4755NQwiUTcMJdVk6/Bj1gHyvyn5U1NXWgAAAABJRU5ErkJggg=="
 
 /***/ },
 /* 203 */
 /***/ function(module, exports) {
 
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAABupgeRAAAAXUlEQVQ4je2RQQ4AIQgDrf//cz1IkBCwu3d7ImYKBcd4+i+SXngd33HxGAGQBFAbEu2eU0s6eaZE2wmdZ9O+ho4U21ukczJ8OJqckBrNkohcOdbay29uw9yv/CS1AESoQe8ZOu2fAAAAAElFTkSuQmCC"
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAABupgeRAAAATklEQVQ4jWNgGNHg////dNGPqY6wzv8wgFU1I37zGBnRFTDiUoqm7f///xDNKAZg1YNmCRMuU3HahsYn6AcsADl88IUpLjnyY3AU0BAAAK8DON2q1nCSAAAAAElFTkSuQmCC"
 
 /***/ },
 /* 204 */
 /***/ function(module, exports) {
 
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAABupgeRAAAAXElEQVQ4je2SQQ6AIBADd/j/n+vBBAmWBYwnYw8cSJnJAhF/QtLW/pxSpo2OzQoVrpo32MPnumRoPeVekpTcSW8YVesYxpBnOHRFAoBhtQMk72Cy9wueUN4xfCoHA5pE2811WAkAAAAASUVORK5CYII="
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAABupgeRAAAAYElEQVQ4je2SwQ7AIAhDxf//57cDi0GtEi87LPZgoCkUDKX8A8DnPrOnnkKyQOSrrGmvB2bWBDZIJWJBlaxUv27pDtphnnXVKHfwLoAHydIrz64mfvzuas4ualDv04sUD4fOUNUI/LFxAAAAAElFTkSuQmCC"
 
 /***/ },
 /* 205 */
 /***/ function(module, exports) {
 
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAABupgeRAAAAbUlEQVQ4je1SQQ7AIAwqZv//MjtsYY0r2uuScaoWAasRHwHJLonkmg0nDOBFjogYW0PrUPQqk+HaWrYGIKrYKgrTUlKGx5Y64blDM6sdaw4DQHJD8u6ldOwu8q5LlbXmSLl3hbFC7i+szX+UOAEjO0H6jclSEAAAAABJRU5ErkJggg=="
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAABupgeRAAAAWUlEQVQ4jeWSOw7AMAhDA/e/8+tWWQ79RGmXxAMDtvmJ1pYH8I/ZOODMZKmLiLG+Go0qKpnOurmh3Ew92dP3SC18dTjND+/gIwGqeLhvP9Lb15h6oQ/8++EAitA+33yaGL4AAAAASUVORK5CYII="
 
 /***/ },
 /* 206 */
 /***/ function(module, exports) {
 
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAcklEQVQ4T92SUQ7AIAhD1/sfmsUlXTqE6pJ9zR8lwAOhOORERNAEgB3fHTSSNUlt57sAOYCV2VHuRnMsQL+Q3yyKrrpL1g7/AHBb2BriJ4C3EN3cJNdKNFnSGvMArDqpNDMBOkgnuBKQIU6tLYCQcbu5nOdKiAF78hJHAAAAAElFTkSuQmCC"
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAABupgeRAAAAXUlEQVQ4je2RQQ4AIQgDrf//cz1IkBCwu3d7ImYKBcd4+i+SXngd33HxGAGQBFAbEu2eU0s6eaZE2wmdZ9O+ho4U21ukczJ8OJqckBrNkohcOdbay29uw9yv/CS1AESoQe8ZOu2fAAAAAElFTkSuQmCC"
 
 /***/ },
 /* 207 */
 /***/ function(module, exports) {
 
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAeElEQVQ4T92TSw4AIQhD7f0PjcEEUwifyWRW485PH1ULFg0REZsCwJO9e4jFEaJ7DOT5AWRirh7dmEbXR0AmdoA31c3ducoPANMvjI/4CaCDdBlQXRnXLtIMdYDMSRXhW4AjywGZ+qEFsBN1EJvJ9UnmIDqpvlLPbVFWgAEA3qAQAAAAAElFTkSuQmCC"
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAABupgeRAAAAXElEQVQ4je2SQQ6AIBADd/j/n+vBBAmWBYwnYw8cSJnJAhF/QtLW/pxSpo2OzQoVrpo32MPnumRoPeVekpTcSW8YVesYxpBnOHRFAoBhtQMk72Cy9wueUN4xfCoHA5pE2811WAkAAAAASUVORK5CYII="
 
 /***/ },
 /* 208 */
 /***/ function(module, exports) {
 
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAZ0lEQVQ4T92TUQ7AIAhD7f0PjcEEUxGImx9L5pfG9qFY0WiIiNgSAE72pojNHlLtDUAk4OrZXE95D3hbfV7zB4DvX8G6+bSZFoE0rlWQOOYL4KQf/o9sgArizaoNAREkMpcAhmRm1XR2o0gB6M/FQwAAAABJRU5ErkJggg=="
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABnRSTlMAAAAAAABupgeRAAAAbUlEQVQ4je1SQQ7AIAwqZv//MjtsYY0r2uuScaoWAasRHwHJLonkmg0nDOBFjogYW0PrUPQqk+HaWrYGIKrYKgrTUlKGx5Y64blDM6sdaw4DQHJD8u6ldOwu8q5LlbXmSLl3hbFC7i+szX+UOAEjO0H6jclSEAAAAABJRU5ErkJggg=="
 
 /***/ },
 /* 209 */
+/***/ function(module, exports) {
+
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAcklEQVQ4T92SUQ7AIAhD1/sfmsUlXTqE6pJ9zR8lwAOhOORERNAEgB3fHTSSNUlt57sAOYCV2VHuRnMsQL+Q3yyKrrpL1g7/AHBb2BriJ4C3EN3cJNdKNFnSGvMArDqpNDMBOkgnuBKQIU6tLYCQcbu5nOdKiAF78hJHAAAAAElFTkSuQmCC"
+
+/***/ },
+/* 210 */
+/***/ function(module, exports) {
+
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAeElEQVQ4T92TSw4AIQhD7f0PjcEEUwifyWRW485PH1ULFg0REZsCwJO9e4jFEaJ7DOT5AWRirh7dmEbXR0AmdoA31c3ducoPANMvjI/4CaCDdBlQXRnXLtIMdYDMSRXhW4AjywGZ+qEFsBN1EJvJ9UnmIDqpvlLPbVFWgAEA3qAQAAAAAElFTkSuQmCC"
+
+/***/ },
+/* 211 */
+/***/ function(module, exports) {
+
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAZ0lEQVQ4T92TUQ7AIAhD7f0PjcEEUxGImx9L5pfG9qFY0WiIiNgSAE72pojNHlLtDUAk4OrZXE95D3hbfV7zB4DvX8G6+bSZFoE0rlWQOOYL4KQf/o9sgArizaoNAREkMpcAhmRm1XR2o0gB6M/FQwAAAABJRU5ErkJggg=="
+
+/***/ },
+/* 212 */
+/***/ function(module, exports) {
+
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAG0lEQVQIW2P8n7nlP+N0HwZGBgaG//8ztzAAAEYpBx0BNhqwAAAAAElFTkSuQmCC"
+
+/***/ },
+/* 213 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -20908,7 +20938,7 @@
 	exports.default = Camera;
 
 /***/ },
-/* 210 */
+/* 214 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -21041,7 +21071,7 @@
 	}(_react2.default.Component);
 
 /***/ },
-/* 211 */
+/* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -21054,23 +21084,23 @@
 	// import Dungeon from "scripts/model/Dungeon.js"
 
 
-	var _shortid = __webpack_require__(212);
+	var _shortid = __webpack_require__(216);
 
 	var _shortid2 = _interopRequireDefault(_shortid);
 
-	var _Adventurer = __webpack_require__(221);
+	var _Adventurer = __webpack_require__(225);
 
 	var _Adventurer2 = _interopRequireDefault(_Adventurer);
 
-	var _Monster = __webpack_require__(225);
+	var _Monster = __webpack_require__(229);
 
 	var _Monster2 = _interopRequireDefault(_Monster);
 
-	var _MonsterWave = __webpack_require__(226);
+	var _MonsterWave = __webpack_require__(230);
 
 	var _MonsterWave2 = _interopRequireDefault(_MonsterWave);
 
-	var _Camera = __webpack_require__(227);
+	var _Camera = __webpack_require__(231);
 
 	var _Camera2 = _interopRequireDefault(_Camera);
 
@@ -21253,23 +21283,23 @@
 	exports.default = Game;
 
 /***/ },
-/* 212 */
+/* 216 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	module.exports = __webpack_require__(213);
+	module.exports = __webpack_require__(217);
 
 
 /***/ },
-/* 213 */
+/* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var alphabet = __webpack_require__(214);
-	var encode = __webpack_require__(216);
-	var decode = __webpack_require__(218);
-	var isValid = __webpack_require__(219);
+	var alphabet = __webpack_require__(218);
+	var encode = __webpack_require__(220);
+	var decode = __webpack_require__(222);
+	var isValid = __webpack_require__(223);
 
 	// Ignore all milliseconds before a certain time to reduce the size of the date entropy without sacrificing uniqueness.
 	// This number should be updated every year or so to keep the generated id short.
@@ -21284,7 +21314,7 @@
 	// has a unique value for worker
 	// Note: I don't know if this is automatically set when using third
 	// party cluster solutions such as pm2.
-	var clusterWorkerId = __webpack_require__(220) || 0;
+	var clusterWorkerId = __webpack_require__(224) || 0;
 
 	// Counter is used when shortid is called multiple times in one second.
 	var counter;
@@ -21367,12 +21397,12 @@
 
 
 /***/ },
-/* 214 */
+/* 218 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var randomFromSeed = __webpack_require__(215);
+	var randomFromSeed = __webpack_require__(219);
 
 	var ORIGINAL = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-';
 	var alphabet;
@@ -21471,7 +21501,7 @@
 
 
 /***/ },
-/* 215 */
+/* 219 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -21502,12 +21532,12 @@
 
 
 /***/ },
-/* 216 */
+/* 220 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var randomByte = __webpack_require__(217);
+	var randomByte = __webpack_require__(221);
 
 	function encode(lookup, number) {
 	    var loopCounter = 0;
@@ -21527,7 +21557,7 @@
 
 
 /***/ },
-/* 217 */
+/* 221 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -21547,11 +21577,11 @@
 
 
 /***/ },
-/* 218 */
+/* 222 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var alphabet = __webpack_require__(214);
+	var alphabet = __webpack_require__(218);
 
 	/**
 	 * Decode the id to get the version and worker
@@ -21570,11 +21600,11 @@
 
 
 /***/ },
-/* 219 */
+/* 223 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var alphabet = __webpack_require__(214);
+	var alphabet = __webpack_require__(218);
 
 	function isShortId(id) {
 	    if (!id || typeof id !== 'string' || id.length < 6 ) {
@@ -21595,7 +21625,7 @@
 
 
 /***/ },
-/* 220 */
+/* 224 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -21604,7 +21634,7 @@
 
 
 /***/ },
-/* 221 */
+/* 225 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -21619,19 +21649,19 @@
 
 	var _data2 = _interopRequireDefault(_data);
 
-	var _shortid = __webpack_require__(212);
+	var _shortid = __webpack_require__(216);
 
 	var _shortid2 = _interopRequireDefault(_shortid);
 
-	var _Effect = __webpack_require__(222);
+	var _Effect = __webpack_require__(226);
 
 	var _Effect2 = _interopRequireDefault(_Effect);
 
-	var _AnimatedSprite = __webpack_require__(223);
+	var _AnimatedSprite = __webpack_require__(227);
 
 	var _AnimatedSprite2 = _interopRequireDefault(_AnimatedSprite);
 
-	var _monsters = __webpack_require__(224);
+	var _monsters = __webpack_require__(228);
 
 	var _monsters2 = _interopRequireDefault(_monsters);
 
@@ -21723,7 +21753,7 @@
 
 	                // collision with monsters
 	                this.game.monsters.forEach(function (monster) {
-	                    if (!monster.isDead) {
+	                    if (!monster.isDead && !monster.isTerrain) {
 	                        if (_this.position.x + movement.x == monster.position.x && _this.position.y + movement.y == monster.position.y) {
 	                            monster.handleAttack(1);
 
@@ -21764,6 +21794,7 @@
 	                            movement.x = 0;
 	                            movement.y = 0;
 	                        }
+	                        console.log(this.game.tiles[key]);
 	                    }
 	                }
 
@@ -21818,7 +21849,7 @@
 	exports.default = Adventurer;
 
 /***/ },
-/* 222 */
+/* 226 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -21858,7 +21889,7 @@
 	exports.default = Effect;
 
 /***/ },
-/* 223 */
+/* 227 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -21869,7 +21900,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _shortid = __webpack_require__(212);
+	var _shortid = __webpack_require__(216);
 
 	var _shortid2 = _interopRequireDefault(_shortid);
 
@@ -21919,7 +21950,7 @@
 	exports.default = AnimatedSprite;
 
 /***/ },
-/* 224 */
+/* 228 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -21932,11 +21963,11 @@
 
 	var _data2 = _interopRequireDefault(_data);
 
-	var _Monster = __webpack_require__(225);
+	var _Monster = __webpack_require__(229);
 
 	var _Monster2 = _interopRequireDefault(_Monster);
 
-	var _monsters = __webpack_require__(224);
+	var _monsters = __webpack_require__(228);
 
 	var _monsters2 = _interopRequireDefault(_monsters);
 
@@ -22168,19 +22199,27 @@
 	        }
 	    },
 	    MOTHER_SPIDER: {
-	        sprite: _data2.default.SPRITES.MONSTERS.SPIDER,
+	        sprite: _data2.default.SPRITES.MONSTERS.MOTHER_SPIDER,
 	        color: _data2.default.COLORS.GREEN,
 	        health: 5,
 	        strength: 0,
 	        turnCounter: function turnCounter() {
 	            this.phase = !this.phase;
 	            this.turnsUntilSpawn = (this.turnsUntilSpawn || 4) - 1;
-	            if (this.turnsUntilSpawn <= 0) {
-	                this.game.monsters.push(new _Monster2.default(this.game, {
+	            this.childCount = this.childCount || 0;
+
+	            if (this.turnsUntilSpawn <= 0 && this.childCount < 3) {
+	                var child = new _Monster2.default(this.game, {
 	                    protomonster: _monsters2.default.NORMAL_SPIDER,
 	                    position: { x: this.position.x, y: this.position.y }
-	                }));
-	                this.game.waves[this.game.adventurer.wave].killcount += 1;
+	                });
+	                var mother = this;
+	                child.onDeath = function () {
+	                    mother.childCount -= 1;
+	                    this.game.wave.killcount += 1;
+	                };
+	                this.game.monsters.push(child);
+	                this.childCount += 1;
 	            }
 	        },
 	        movement: function movement() {
@@ -22209,11 +22248,70 @@
 
 	            return move;
 	        }
+	    },
+	    WEB: {
+	        sprite: _data2.default.SPRITES.TERRAIN.WEB,
+	        color: _data2.default.COLORS.WHITE,
+	        opacity: 0.5,
+	        isTerrain: true,
+	        health: 10,
+	        stack: -100,
+	        strength: 0,
+	        movement: function movement() {},
+	        hasAlternateSprite: false,
+	        turnCounter: function turnCounter() {
+	            this.phase = true;
+	        },
+	        grabCounter: function grabCounter() {
+	            this.turnCount = this.turnCount || 0;
+	            if (this.game.adventurer.grabCount == 0 && this.turnCount == 0) {
+	                this.turnCount += 1;
+	                this.game.adventurer.grabCount += 1;
+	                this.game.adventurer.grabMonster = this;
+	            }
+	        }
+	    },
+	    WEB_SPIDER: {
+	        sprite: _data2.default.SPRITES.MONSTERS.SPIDER,
+	        color: _data2.default.COLORS.BLUE,
+	        health: 5,
+	        strength: 0,
+	        turnCounter: function turnCounter() {
+	            this.phase = !this.phase;
+	            this.turnsUntilSpawn = (this.turnsUntilSpawn || 4) - 1;
+	            if (this.turnsUntilSpawn <= 0) {
+	                this.game.monsters.push(new _Monster2.default(this.game, {
+	                    protomonster: _monsters2.default.WEB,
+	                    position: { x: this.position.x, y: this.position.y }
+	                }));
+	            }
+	        },
+	        movement: function movement() {
+
+	            var dx = this.game.adventurer.position.x - this.position.x;
+	            var dy = this.game.adventurer.position.y - this.position.y;
+
+	            var move = {
+	                x: Math.sign(dx || _data2.default.FRAME.WIDTH / 2 - this.position.x),
+	                y: Math.sign(dy || _data2.default.FRAME.HEIGHT / 2 - this.position.y)
+	            };
+
+	            if (this.outOfBounds(move)) {
+	                if (this.outOfBounds({ x: move.x, y: 0 })) {
+	                    move.x = -move.x;
+	                }
+	                if (this.outOfBounds({ x: 0, y: move.y })) {
+	                    move.y = -move.y;
+	                }
+	            }
+
+	            return move;
+	        }
 	    }
 	};
 
 /***/ },
-/* 225 */
+/* 229 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -22228,19 +22326,19 @@
 
 	var _data2 = _interopRequireDefault(_data);
 
-	var _Effect = __webpack_require__(222);
+	var _Effect = __webpack_require__(226);
 
 	var _Effect2 = _interopRequireDefault(_Effect);
 
-	var _AnimatedSprite = __webpack_require__(223);
+	var _AnimatedSprite = __webpack_require__(227);
 
 	var _AnimatedSprite2 = _interopRequireDefault(_AnimatedSprite);
 
-	var _monsters = __webpack_require__(224);
+	var _monsters = __webpack_require__(228);
 
 	var _monsters2 = _interopRequireDefault(_monsters);
 
-	var _shortid = __webpack_require__(212);
+	var _shortid = __webpack_require__(216);
 
 	var _shortid2 = _interopRequireDefault(_shortid);
 
@@ -22255,8 +22353,17 @@
 	        this.key = "monster" + "-" + _shortid2.default.generate();
 	        this.color = monster.protomonster.color || _data2.default.COLORS.PINK;
 	        this.basesprite = monster.protomonster.sprite || _data2.default.SPRITES.MONSTERS.SLIME;
-	        this.sprite = this.pickSprite();
 	        this.isSpawned = true;
+	        this.opacity = monster.protomonster.opacity || 1;
+	        this.isDead = monster.protomonster.isDead || false;
+	        this.stack = monster.protomonster.stack || 0;
+	        if (monster.protomonster.hasAlternateSprite == undefined) {
+	            this.hasAlternateSprite = true;
+	        } else {
+	            this.hasAlternateSprite = monster.protomonster.hasAlternateSprite;
+	        }
+	        this.sprite = this.pickSprite();
+	        this.isTerrain = monster.protomonster.isTerrain || false;
 
 	        this.game = game;
 
@@ -22281,15 +22388,23 @@
 	        this.onDeath = monster.protomonster.onDeath || function () {};
 
 	        this.health = monster.protomonster.health || 1;
+
+	        if (monster.protomonster.onSpawn) {
+	            monster.protomonster.onSpawn();
+	        }
 	    }
 
 	    _createClass(Monster, [{
 	        key: "pickSprite",
 	        value: function pickSprite() {
-	            if (this.phase == true) {
-	                return this.basesprite.ALPHA;
+	            if (this.hasAlternateSprite) {
+	                if (this.phase == true) {
+	                    return this.basesprite.ALPHA;
+	                } else {
+	                    return this.basesprite.OMEGA;
+	                }
 	            } else {
-	                return this.basesprite.OMEGA;
+	                return this.basesprite;
 	            }
 	        }
 	    }, {
@@ -22337,28 +22452,40 @@
 
 	            // collsiion with adventurer
 	            if (this.position.x + movement.x == this.game.adventurer.position.x && this.position.y + movement.y == this.game.adventurer.position.y) {
-	                this.game.adventurer.beAttacked();
-	                this.grabCounter();
-	                if (movement.x < 0 && movement.y == 0) {
-	                    this.animation = "attack-westwards";
-	                } else if (movement.x > 0 && movement.y == 0) {
-	                    this.animation = "attack-eastwards";
-	                } else if (movement.x == 0 && movement.y < 0) {
-	                    this.animation = "attack-northwards";
-	                } else if (movement.x == 0 && movement.y > 0) {
-	                    this.animation = "attack-southwards";
+	                if (!this.isTerrain) {
+	                    this.game.adventurer.beAttacked();
 	                }
-	                this.game.add("effects", new _Effect2.default({
-	                    sprite: new _AnimatedSprite2.default({
-	                        images: _data2.default.SPRITES.EFFECTS.SLASH,
-	                        isLoop: false,
-	                        timing: 20
-	                    }),
-	                    position: {
-	                        x: this.position.x + movement.x,
-	                        y: this.position.y + movement.y
+	                this.grabCounter();
+	                if (!this.isTerrain) {
+	                    if (movement.x < 0 && movement.y == 0) {
+	                        this.animation = "attack-westwards";
+	                    } else if (movement.x > 0 && movement.y == 0) {
+	                        this.animation = "attack-eastwards";
+	                    } else if (movement.x == 0 && movement.y < 0) {
+	                        this.animation = "attack-northwards";
+	                    } else if (movement.x == 0 && movement.y > 0) {
+	                        this.animation = "attack-southwards";
+	                    } else if (movement.x > 0 && movement.y > 0) {
+	                        this.animation = "attack-southeastwards";
+	                    } else if (movement.x > 0 && movement.y < 0) {
+	                        this.animation = "attack-northeastwards";
+	                    } else if (movement.x < 0 && movement.y > 0) {
+	                        this.animation = "attack-southeastwards";
+	                    } else if (movement.x < 0 && movement.y < 0) {
+	                        this.animation = "attack-northwestwards";
 	                    }
-	                }));
+	                    this.game.add("effects", new _Effect2.default({
+	                        sprite: new _AnimatedSprite2.default({
+	                            images: _data2.default.SPRITES.EFFECTS.SLASH,
+	                            isLoop: false,
+	                            timing: 20
+	                        }),
+	                        position: {
+	                            x: this.position.x + movement.x,
+	                            y: this.position.y + movement.y
+	                        }
+	                    }));
+	                }
 	                movement.x = 0;
 	                movement.y = 0;
 	            }
@@ -22503,7 +22630,7 @@
 	exports.default = Monster;
 
 /***/ },
-/* 226 */
+/* 230 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -22530,11 +22657,11 @@
 
 	var _data2 = _interopRequireDefault(_data);
 
-	var _monsters = __webpack_require__(224);
+	var _monsters = __webpack_require__(228);
 
 	var _monsters2 = _interopRequireDefault(_monsters);
 
-	var _Monster = __webpack_require__(225);
+	var _Monster = __webpack_require__(229);
 
 	var _Monster2 = _interopRequireDefault(_Monster);
 
@@ -22637,7 +22764,7 @@
 	        key: "getCapacity",
 	        value: function getCapacity() {
 	            return this.game.monsters.reduce(function (capacity, monster) {
-	                return capacity + (monster.isDead ? 0 : 1);
+	                return capacity + (monster.isDead || monster.isTerrain ? 0 : 1);
 	            }, 0);
 	        }
 	    }, {
@@ -22657,7 +22784,7 @@
 	exports.default = MonsterWave;
 
 /***/ },
-/* 227 */
+/* 231 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -22693,7 +22820,7 @@
 	exports.default = Camera;
 
 /***/ },
-/* 228 */
+/* 232 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -22721,7 +22848,7 @@
 	exports.default = Frame;
 
 /***/ },
-/* 229 */
+/* 233 */
 /***/ function(module, exports) {
 
 	function microAjax(url, callbackFunction)
@@ -22777,11 +22904,11 @@
 
 
 /***/ },
-/* 230 */
+/* 234 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var ansiRegex = __webpack_require__(231)();
+	var ansiRegex = __webpack_require__(235)();
 
 	module.exports = function (str) {
 		return typeof str === 'string' ? str.replace(ansiRegex, '') : str;
@@ -22789,7 +22916,7 @@
 
 
 /***/ },
-/* 231 */
+/* 235 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -22799,12 +22926,12 @@
 
 
 /***/ },
-/* 232 */
+/* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var _Tester = __webpack_require__(233);
+	var _Tester = __webpack_require__(237);
 
 	var _Tester2 = _interopRequireDefault(_Tester);
 
@@ -22813,7 +22940,7 @@
 	// Here be black magic. We're asking webpack, our compiler, to
 	// import any and all modules that end with "Test". Weird, huh?
 	// If you add a file named "HelloWorldTest"
-	var context = __webpack_require__(234);
+	var context = __webpack_require__(238);
 	var tests = context.keys().map(function (key) {
 	    return context(key).default;
 	});
@@ -22832,7 +22959,7 @@
 	console.log("Testing took " + time + ".");
 
 /***/ },
-/* 233 */
+/* 237 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -22850,17 +22977,17 @@
 	}
 
 /***/ },
-/* 234 */
+/* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./BatTest": 235,
-		"./MonsterWaveTests": 242,
-		"./OrcTest": 243,
-		"./SampleTest": 244,
-		"./SpiderTest": 245,
-		"./ThievesTest": 246,
-		"./TrollTest": 247
+		"./BatTest": 239,
+		"./MonsterWaveTests": 246,
+		"./OrcTest": 247,
+		"./SampleTest": 248,
+		"./SpiderTest": 249,
+		"./ThievesTest": 250,
+		"./TrollTest": 251
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -22873,11 +23000,11 @@
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 234;
+	webpackContext.id = 238;
 
 
 /***/ },
-/* 235 */
+/* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -22887,15 +23014,15 @@
 	});
 	exports.default = BatTest;
 
-	var _expect = __webpack_require__(236);
+	var _expect = __webpack_require__(240);
 
 	var _expect2 = _interopRequireDefault(_expect);
 
-	var _Game = __webpack_require__(211);
+	var _Game = __webpack_require__(215);
 
 	var _Game2 = _interopRequireDefault(_Game);
 
-	var _monsters = __webpack_require__(224);
+	var _monsters = __webpack_require__(228);
 
 	var _monsters2 = _interopRequireDefault(_monsters);
 
@@ -22939,7 +23066,7 @@
 	}
 
 /***/ },
-/* 236 */
+/* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module, Buffer) {(function (global, module) {
@@ -24227,10 +24354,10 @@
 	  ,  true ? module : {exports: {}}
 	);
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(237)(module), __webpack_require__(238).Buffer))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(241)(module), __webpack_require__(242).Buffer))
 
 /***/ },
-/* 237 */
+/* 241 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -24246,7 +24373,7 @@
 
 
 /***/ },
-/* 238 */
+/* 242 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer, global) {/*!
@@ -24259,9 +24386,9 @@
 
 	'use strict'
 
-	var base64 = __webpack_require__(239)
-	var ieee754 = __webpack_require__(240)
-	var isArray = __webpack_require__(241)
+	var base64 = __webpack_require__(243)
+	var ieee754 = __webpack_require__(244)
+	var isArray = __webpack_require__(245)
 
 	exports.Buffer = Buffer
 	exports.SlowBuffer = SlowBuffer
@@ -26039,10 +26166,10 @@
 	  return val !== val // eslint-disable-line no-self-compare
 	}
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(238).Buffer, (function() { return this; }())))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(242).Buffer, (function() { return this; }())))
 
 /***/ },
-/* 239 */
+/* 243 */
 /***/ function(module, exports) {
 
 	'use strict'
@@ -26157,7 +26284,7 @@
 
 
 /***/ },
-/* 240 */
+/* 244 */
 /***/ function(module, exports) {
 
 	exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -26247,7 +26374,7 @@
 
 
 /***/ },
-/* 241 */
+/* 245 */
 /***/ function(module, exports) {
 
 	var toString = {}.toString;
@@ -26258,7 +26385,7 @@
 
 
 /***/ },
-/* 242 */
+/* 246 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -26268,15 +26395,15 @@
 	});
 	exports.default = MonsterWaveTests;
 
-	var _expect = __webpack_require__(236);
+	var _expect = __webpack_require__(240);
 
 	var _expect2 = _interopRequireDefault(_expect);
 
-	var _Game = __webpack_require__(211);
+	var _Game = __webpack_require__(215);
 
 	var _Game2 = _interopRequireDefault(_Game);
 
-	var _MonsterWave = __webpack_require__(226);
+	var _MonsterWave = __webpack_require__(230);
 
 	var _MonsterWave2 = _interopRequireDefault(_MonsterWave);
 
@@ -26301,7 +26428,7 @@
 	}
 
 /***/ },
-/* 243 */
+/* 247 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -26311,15 +26438,15 @@
 	});
 	exports.default = OrcTest;
 
-	var _expect = __webpack_require__(236);
+	var _expect = __webpack_require__(240);
 
 	var _expect2 = _interopRequireDefault(_expect);
 
-	var _Game = __webpack_require__(211);
+	var _Game = __webpack_require__(215);
 
 	var _Game2 = _interopRequireDefault(_Game);
 
-	var _monsters = __webpack_require__(224);
+	var _monsters = __webpack_require__(228);
 
 	var _monsters2 = _interopRequireDefault(_monsters);
 
@@ -26358,7 +26485,7 @@
 	}
 
 /***/ },
-/* 244 */
+/* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -26368,11 +26495,11 @@
 	});
 	exports.default = SampleTest;
 
-	var _expect = __webpack_require__(236);
+	var _expect = __webpack_require__(240);
 
 	var _expect2 = _interopRequireDefault(_expect);
 
-	var _Game = __webpack_require__(211);
+	var _Game = __webpack_require__(215);
 
 	var _Game2 = _interopRequireDefault(_Game);
 
@@ -26435,7 +26562,7 @@
 	// from our container class, `Game`.
 
 /***/ },
-/* 245 */
+/* 249 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -26445,15 +26572,15 @@
 	});
 	exports.default = SpiderTest;
 
-	var _expect = __webpack_require__(236);
+	var _expect = __webpack_require__(240);
 
 	var _expect2 = _interopRequireDefault(_expect);
 
-	var _Game = __webpack_require__(211);
+	var _Game = __webpack_require__(215);
 
 	var _Game2 = _interopRequireDefault(_Game);
 
-	var _monsters = __webpack_require__(224);
+	var _monsters = __webpack_require__(228);
 
 	var _monsters2 = _interopRequireDefault(_monsters);
 
@@ -26492,24 +26619,12 @@
 	    });
 
 	    (0, _expect2.default)(game2.monsters[0].position).to.be.eql({ x: 2, y: 2 });
-	    (0, _expect2.default)(game2.monsters.length).to.be.eql(1);
-
 	    game2.monsters[0].onAction();
 	    (0, _expect2.default)(game2.monsters[0].position).to.be.eql({ x: 1, y: 1 });
-	    (0, _expect2.default)(game2.monsters.length).to.be.eql(1);
-
-	    game2.monsters[0].onAction();
-	    (0, _expect2.default)(game2.monsters.length).to.be.eql(1);
-
-	    game2.monsters[0].onAction();
-	    (0, _expect2.default)(game2.monsters.length).to.be.eql(1);
-
-	    game2.monsters[0].onAction();
-	    (0, _expect2.default)(game2.monsters.length).to.be.eql(2);
 	}
 
 /***/ },
-/* 246 */
+/* 250 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -26519,15 +26634,15 @@
 	});
 	exports.default = ThiefTest;
 
-	var _expect = __webpack_require__(236);
+	var _expect = __webpack_require__(240);
 
 	var _expect2 = _interopRequireDefault(_expect);
 
-	var _Game = __webpack_require__(211);
+	var _Game = __webpack_require__(215);
 
 	var _Game2 = _interopRequireDefault(_Game);
 
-	var _monsters = __webpack_require__(224);
+	var _monsters = __webpack_require__(228);
 
 	var _monsters2 = _interopRequireDefault(_monsters);
 
@@ -26585,7 +26700,7 @@
 	}
 
 /***/ },
-/* 247 */
+/* 251 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -26595,15 +26710,15 @@
 	});
 	exports.default = TrollTest;
 
-	var _expect = __webpack_require__(236);
+	var _expect = __webpack_require__(240);
 
 	var _expect2 = _interopRequireDefault(_expect);
 
-	var _Game = __webpack_require__(211);
+	var _Game = __webpack_require__(215);
 
 	var _Game2 = _interopRequireDefault(_Game);
 
-	var _monsters = __webpack_require__(224);
+	var _monsters = __webpack_require__(228);
 
 	var _monsters2 = _interopRequireDefault(_monsters);
 

@@ -72,6 +72,48 @@ html {
     100% {-webkit-transform: translateX(0px);transform: translateX(0px)}
 }
 
+@-webkit-keyframes attack-southeastwards {
+    0% {-webkit-transform: translate(0px,0px);transform: translate(0px,0px)}
+    50% {-webkit-transform: translate(+7px,+7px);transform: translate(+7px,+7px)}
+    100% {-webkit-transform: translate(0px,0px);transform: translate(0px,0px)}
+}
+
+@keyframes attack-southeastwards {
+    0% {-webkit-transform: translate(0px,0px);transform: translate(0px,0px)}
+    50% {-webkit-transform: translate(+7px,+7px);transform: translate(+7px,+7px)}
+    100% {-webkit-transform: translate(0px,0px);transform: translate(0px,0px)}
+}
+
+@-webkit-keyframes attack-northeastwards {
+    0% {-webkit-transform: translate(0px,0px);transform: translate(0px,0px)}
+    50% {-webkit-transform: translate(+7px,-7px);transform: translate(+7px,-7px)}
+    100% {-webkit-transform: translate(0px,0px);transform: translate(0px,0px)}
+}
+
+@keyframes attack-northeastwards {
+    0% {-webkit-transform: translate(0px,0px);transform: translate(0px,0px)}
+    50% {-webkit-transform: translate(+7px,-7px);transform: translate(+7px,-7px)}
+    100% {-webkit-transform: translate(0px,0px);transform: translate(0px,0px)}
+}
+
+@keyframes attack-southeastwards {
+    0% {-webkit-transform: translate(0px,0px);transform: translate(0px,0px)}
+    50% {-webkit-transform: translate(-7px,+7px);transform: translate(-7px,+7px)}
+    100% {-webkit-transform: translate(0px,0px);transform: translate(0px,0px)}
+}
+
+@-webkit-keyframes attack-southwestwards {
+    0% {-webkit-transform: translate(0px,0px);transform: translate(0px,0px)}
+    50% {-webkit-transform: translate(-7px,-7px);transform: translate(-7px,-7px)}
+    100% {-webkit-transform: translate(0px,0px);transform: translate(0px,0px)}
+}
+
+@keyframes attack-southwestwards {
+    0% {-webkit-transform: translate(0px,0px);transform: translate(0px,0px)}
+    50% {-webkit-transform: translate(-7px,-7px);transform: translate(-7px,-7px)}
+    100% {-webkit-transform: translate(0px,0px);transform: translate(0px,0px)}
+}
+
 @function strip-unit($number) {
 
     @return $number;
